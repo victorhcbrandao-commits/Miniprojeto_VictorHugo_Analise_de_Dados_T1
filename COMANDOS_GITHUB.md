@@ -21,8 +21,6 @@ git add README.md README_VictorHugo_Analise_de_Dados_T1.md COMANDOS_GITHUB.md
 git commit -m "Finaliza documentacao do mini projeto"
 
 git branch -M main
-git remote add origin LINK_DO_REPOSITORIO
+git remote add origin https://github.com/victorhcbrandao-commits/Miniprojeto_VictorHugo_Analise_de_Dados_T1.git
 git push -u origin main
 ```
-
-Substitua `LINK_DO_REPOSITORIO` pelo link do repositório criado no GitHub.
