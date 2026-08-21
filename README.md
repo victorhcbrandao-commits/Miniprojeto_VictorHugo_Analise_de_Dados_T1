@@ -1,243 +1,466 @@
-# Miniprojeto_VictorHugo_Analise_de_Dados_T1
+# 🛒 Análise de Dados de Varejo
 
-## Mini Projeto Avaliativo - SCTEC
+**Python · Pandas · Limpeza de Dados · Análise Exploratória de Dados**
 
-**Curso:** Análise de Dados com Python [T1]  
-**Módulo:** Módulo 1 - Semana 07  
-**Aluno:** Victor Hugo  
-**Turma:** Analise_de_Dados_T1  
+[🇺🇸 English](README.md) | 🇧🇷 **Português**
 
----
+> Transformando uma grande base de dados de varejo em dados limpos, estruturados e prontos para análise utilizando Python e Pandas.
 
-## Objetivo do Projeto
-
-O objetivo deste mini projeto é realizar uma Análise Exploratória de Dados (AED) aplicada à base `Varejo.csv`, utilizando Python e a biblioteca pandas.
-
-A atividade contempla as principais etapas de preparação e análise de uma base real de varejo, incluindo importação, verificação de problemas, limpeza dos dados, transformação de tipos, estatísticas descritivas, agrupamentos e geração de conclusões.
+> Este projeto foi originalmente desenvolvido como parte de um **programa de formação em Análise de Dados com Python** e posteriormente reorganizado para apresentação em portfólio profissional.
 
 ---
 
-## Base de Dados
+## 📌 Visão Geral do Projeto
 
-A base utilizada foi a `Varejo.csv`, sugerida no Kaggle pelo curso da SCTEC.
+O projeto **Análise de Dados de Varejo** explora uma grande base de dados contendo informações sobre clientes, compras e produtos.
 
-Ela contém registros de compras no varejo, com informações como:
+A base original possui aproximadamente **830.000 registros** e apresenta desafios comuns de qualidade de dados encontrados em cenários reais, incluindo:
 
-- Data da compra
-- Cliente
-- Gênero do cliente
-- Número de filhos
-- Produto
-- Categoria do produto
-- Identificador da compra
+- colunas vazias;
+- registros duplicados;
+- tipos de dados inconsistentes;
+- variáveis categóricas que precisam ser validadas;
+- campos de data que precisam ser convertidos.
 
----
+O projeto implementa um fluxo completo de preparação e análise exploratória utilizando **Python e Pandas**, transformando os dados brutos em uma base limpa e estruturada, pronta para análises posteriores.
 
-## Tecnologias Utilizadas
-
-- Python
-- Pandas
-- NumPy
-- Regex / expressões regulares
-- Biblioteca csv / csv.DictReader
-- VSCode ou Google Colab
-- Git e GitHub
-
----
-
-## Estrutura dos Arquivos
+O fluxo geral do projeto é:
 
 ```text
-Miniprojeto_VictorHugo_Analise_de_Dados_T1/
+Base de Varejo Bruta
+        │
+        ▼
+Inspeção dos Dados
+        │
+        ▼
+Avaliação da Qualidade
+        │
+        ▼
+Limpeza e Transformação
+        │
+        ▼
+Análise Exploratória
+        │
+        ▼
+Base Processada
+        │
+        ▼
+Insights de Negócio
+```
+
+---
+
+## 🗂️ Base de Dados
+
+O projeto utiliza uma base de varejo contendo informações sobre clientes, compras e produtos.
+
+A base original contém:
+
+```text
+830.000 linhas
+14 colunas
+```
+
+Os principais atributos incluem:
+
+| Coluna | Descrição |
+|---|---|
+| `DATA` | Data da compra |
+| `CO_ID` | Identificador da compra |
+| `CL_ID` | Identificador do cliente |
+| `CL_GENERO` | Gênero do cliente |
+| `CL_EC` | Estado civil do cliente |
+| `CL_FHL` | Número de filhos |
+| `CL_SEG` | Segmento do cliente |
+| `PR_ID` | Identificador do produto |
+| `PR_CAT` | Categoria do produto |
+| `PR_NOME` | Nome do produto |
+
+A base bruta também continha quatro colunas completamente vazias:
+
+```text
+Unnamed: 10
+Unnamed: 11
+Unnamed: 12
+Unnamed: 13
+```
+
+Essas colunas foram identificadas durante a avaliação de qualidade e removidas durante o processamento.
+
+---
+
+## 🔎 Avaliação da Qualidade dos Dados
+
+Antes da análise, a base foi inspecionada em busca de problemas comuns de qualidade de dados.
+
+A avaliação incluiu:
+
+- valores ausentes;
+- registros duplicados;
+- datas inválidas;
+- categorias de produtos vazias;
+- identificadores de compra ausentes;
+- colunas vazias desnecessárias;
+- consistência dos tipos de dados.
+
+A análise identificou **96.553 registros duplicados** na base original.
+
+Após a limpeza e remoção das duplicidades, a base final passou a conter:
+
+```text
+733.447 registros
+```
+
+Isso representa aproximadamente **88% da base original**, preservando a maior parte das informações enquanto elimina observações duplicadas.
+
+---
+
+## 🧹 Limpeza e Transformação dos Dados
+
+A etapa de processamento prepara os dados brutos para uma análise mais confiável.
+
+As principais transformações incluem:
+
+```text
+Dados brutos
+   │
+   ├── Remoção de colunas vazias
+   │
+   ├── Validação dos identificadores de compra
+   │
+   ├── Conversão das datas
+   │
+   ├── Normalização dos tipos de dados
+   │
+   ├── Tratamento de valores ausentes
+   │
+   ├── Validação das categorias de produtos
+   │
+   └── Remoção de registros duplicados
+   │
+   ▼
+Base limpa
+```
+
+### Conversão de datas
+
+A coluna `DATA` é convertida para um formato datetime adequado, permitindo análises temporais mais confiáveis.
+
+### Identificadores de compra
+
+O campo `CO_ID` é tratado como identificador, e não como uma medida numérica.
+
+### Valores ausentes
+
+O projeto verifica o campo `CL_FHL` e aplica imputação pela mediana quando existem valores ausentes.
+
+### Remoção de duplicidades
+
+Observações duplicadas são removidas antes da realização das análises exploratórias.
+
+### Colunas vazias
+
+Colunas contendo apenas valores nulos são removidas automaticamente.
+
+---
+
+## 📊 Análise Exploratória de Dados
+
+Após a limpeza da base, são realizadas estatísticas descritivas e análises agrupadas para identificar padrões relacionados aos clientes e às compras.
+
+### Número de filhos
+
+A variável `CL_FHL` apresenta as seguintes estatísticas descritivas:
+
+| Métrica | Valor |
+|---|---:|
+| Média | 1,15 |
+| Mediana | 0 |
+| Desvio padrão | 1,42 |
+| Moda | 0 |
+| Mínimo | 0 |
+| Máximo | 4 |
+
+Quartis:
+
+```text
+25% → 0 filhos
+50% → 0 filhos
+75% → 2 filhos
+```
+
+Os resultados indicam que uma parcela significativa dos clientes presentes na base não possui filhos.
+
+---
+
+## 🛍️ Análise das Categorias de Produtos
+
+A base processada permite identificar as categorias com maior volume de registros de compra.
+
+| Categoria | Registros |
+|---|---:|
+| ALIMENTOS | 384.197 |
+| HIGIENE | 137.702 |
+| LIMPEZA | 128.632 |
+| BEBIDAS | 38.264 |
+| PET | 28.553 |
+| ACESSORIOS | 12.871 |
+| N/D | 3.228 |
+
+A categoria **ALIMENTOS** representa, com ampla diferença, o maior volume de registros da base.
+
+---
+
+## 👥 Análise dos Clientes
+
+O projeto também avalia a atividade de compra de acordo com o gênero dos clientes.
+
+Identificadores únicos de compra por gênero:
+
+| Gênero | Compras |
+|---|---:|
+| Feminino | 9.615 |
+| Masculino | 8.856 |
+
+Média do número de filhos:
+
+| Gênero | Média |
+|---|---:|
+| Masculino | 1,21 |
+| Feminino | 1,09 |
+
+Essas agregações fornecem uma visão inicial das características dos clientes e dos padrões de compra presentes na base.
+
+---
+
+## 💡 Principais Resultados
+
+A análise destaca algumas características relevantes da base de varejo:
+
+- A base original possui **830.000 registros**, demonstrando o processamento de um volume significativo de dados utilizando Pandas.
+- Foram identificados e removidos **96.553 registros duplicados**.
+- A base final processada contém **733.447 registros**.
+- `ALIMENTOS` é a categoria dominante em quantidade de registros.
+- A mediana do número de filhos dos clientes é **0**.
+- Clientes do gênero feminino apresentam uma quantidade ligeiramente maior de identificadores únicos de compra do que clientes do gênero masculino.
+- A conversão adequada de datas e identificadores melhora a confiabilidade das análises posteriores.
+
+O projeto demonstra como um processo estruturado de limpeza pode transformar dados operacionais brutos em uma base mais confiável para exploração analítica.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+### Processamento de Dados
+
+`Python` · `Pandas`
+
+### Manipulação de Dados
+
+`CSV` · `csv.DictReader`
+
+### Análise
+
+`Estatística Descritiva` · `Agregação de Dados` · `Limpeza de Dados`
+
+### Desenvolvimento
+
+`Git` · `GitHub` · `VS Code`
+
+---
+
+## 📁 Estrutura do Projeto
+
+```text
+retail-data-analysis/
 │
-├── mini_projeto.py
-├── Varejo.csv
-├── df_limpo.csv
+├── data/
+│   │
+│   ├── raw/
+│   │   └── Varejo.csv
+│   │
+│   └── processed/
+│       └── df_limpo.csv
+│
+├── src/
+│   └── retail_analysis.py
+│
+├── .gitignore
 ├── README.md
-└── README_VictorHugo_Analise_de_Dados_T1.md
+├── README.pt-BR.md
+└── requirements.txt
 ```
 
 ---
 
-## Sprints Desenvolvidas
+## 🚀 Como Executar
 
-### Sprint 1 - Importação dos Dados
-
-Foi realizada a importação da base `Varejo.csv` com pandas, utilizando o método `read_csv`. Também foi incluída uma demonstração complementar com `csv.DictReader`, conforme previsto na rúbrica de avaliação.
-
-Também foram exibidos:
-
-- Número de registros
-- Número de colunas
-- Nome das colunas
-- Tipos de dados originais
-
----
-
-### Sprint 2 - Transformação de Strings, Integer, Float e Datetime
-
-Foram criadas funções para tratamento de dados:
-
-- Limpeza de textos com `strip()` e expressões regulares
-- Conversão de valores inteiros com `pd.to_numeric`
-- Conversão de valores decimais com tratamento de vírgulas e caracteres inválidos
-- Conversão da coluna `DATA` para o tipo `datetime`
-
----
-
-### Sprint 3 - Limpeza de Nulos e Duplicatas
-
-Foram aplicadas rotinas de limpeza para:
-
-- Identificar valores nulos por coluna
-- Identificar duplicatas
-- Validar o identificador de compra `CO_ID`
-- Remover registros sem identificador de compra
-- Substituir categorias vazias por `"Sem Categoria"`
-- Imputar valores ausentes da coluna `CL_FHL` pela mediana
-- Remover registros com datas inválidas
-- Remover registros duplicados
-
-A escolha de imputar `CL_FHL` pela mediana foi feita porque a mediana é menos sensível a valores extremos do que a média.
-
----
-
-### Sprint 4 - Estatística Descritiva
-
-Foram calculadas estatísticas da coluna `CL_FHL`, referente ao número de filhos do cliente:
-
-- Média
-- Mediana
-- Desvio padrão
-- Moda
-- Máximo
-- Mínimo
-- Contagem
-- Quartis
-
----
-
-### Sprint 5 - Relatório e Documentação
-
-O script gera um relatório no terminal contendo:
-
-- Estrutura da base
-- Problemas encontrados
-- Dados tratados
-- Estatísticas descritivas
-- Agrupamentos
-- Conclusões finais
-
-Este README apresenta a documentação do projeto e a reflexão teórica sobre a importância da qualidade dos dados.
-
----
-
-### Sprint 6 - Versionamento
-
-Os arquivos do projeto devem ser enviados para um repositório público no GitHub com o nome:
-
-```text
-Miniprojeto_VictorHugo_Analise_de_Dados_T1
-```
-
-Arquivos esperados no repositório:
-
-- `mini_projeto.py`
-- `Varejo.csv`
-- `df_limpo.csv`
-- `README.md`
-- `README_VictorHugo_Analise_de_Dados_T1.md`
-
----
-
-## Agrupamentos Realizados
-
-### 1. Compras por Gênero
-
-Foi utilizado `groupby()` para identificar a quantidade de compras por gênero do cliente.
-
-### 2. Categorias Mais Vendidas
-
-Foi utilizado `groupby()` para identificar as categorias com maior quantidade de registros de venda.
-
-### 3. Média de Filhos por Gênero
-
-Foi incluído um agrupamento adicional para observar a média de filhos dos clientes por gênero.
-
----
-
-## Principais Insights
-
-1. A base possui grande volume de registros e permite análises relevantes para o varejo.
-2. Foram encontrados problemas de qualidade, como possíveis categorias vazias, datas inválidas e duplicatas.
-3. A limpeza dos dados foi necessária para aumentar a confiabilidade da análise.
-4. A conversão da coluna `DATA` para `datetime` permite futuras análises temporais.
-5. A validação do identificador de compra `CO_ID` reforça a confiabilidade das contagens e agrupamentos.
-6. A coluna `CL_FHL` foi tratada e analisada com estatísticas descritivas.
-7. Os agrupamentos por gênero e categoria ajudam a identificar padrões de comportamento de compra.
-
----
-
-## Reflexão Teórica
-
-A Análise Exploratória de Dados é uma etapa fundamental em projetos de dados, pois permite compreender a estrutura da base, identificar problemas de qualidade e encontrar padrões iniciais antes de análises mais avançadas.
-
-Bases reais geralmente possuem inconsistências, como valores nulos, duplicatas, tipos incorretos e campos textuais mal preenchidos. Por isso, a etapa de limpeza é essencial para que os resultados obtidos sejam confiáveis.
-
-Neste projeto, o uso do pandas facilitou a importação, transformação e sumarização dos dados. A aplicação de funções, condicionais e expressões regulares contribuiu para padronizar as informações e preparar a base para análises futuras.
-
----
-
-## Como Executar
-
-### Opção 1 - VSCode
-
-1. Abra a pasta do projeto no VSCode.
-2. Confirme que o arquivo `Varejo.csv` está na mesma pasta do script.
-3. Execute no terminal:
+### 1. Clonar o repositório
 
 ```bash
-python mini_projeto.py
+git clone https://github.com/victorhcbrandao/retail-data-analysis.git
 ```
 
-### Opção 2 - Google Colab
-
-1. Abra o Google Colab.
-2. Faça upload do arquivo `Varejo.csv`.
-3. Copie o conteúdo do script `mini_projeto.py`.
-4. Execute todas as células.
-
----
-
-## Comandos Sugeridos para GitHub
+### 2. Acessar a pasta do projeto
 
 ```bash
-git init
-git add Varejo.csv
-git commit -m "Importa base de dados do projeto"
+cd retail-data-analysis
+```
 
-git add mini_projeto.py
-git commit -m "Adiciona script inicial de analise exploratoria"
+### 3. Criar um ambiente virtual
 
-git add mini_projeto.py df_limpo.csv
-git commit -m "Implementa limpeza estatisticas e agrupamentos"
+```bash
+python -m venv .venv
+```
 
-git add README.md README_VictorHugo_Analise_de_Dados_T1.md
-git commit -m "Finaliza documentacao do mini projeto"
+### 4. Ativar o ambiente
 
-git branch -M main
-git remote add origin https://github.com/victorhcbrandao-commits/Miniprojeto_VictorHugo_Analise_de_Dados_T1.git
-git push -u origin main
+**Windows**
+
+```bash
+.venv\Scripts\activate
+```
+
+**Linux / macOS**
+
+```bash
+source .venv/bin/activate
+```
+
+### 5. Instalar as dependências
+
+```bash
+pip install -r requirements.txt
 ```
 
 ---
 
-## Arquivo de Saída
+## ▶️ Executando a Análise
 
-Após a execução do script, é gerado o arquivo:
+Certifique-se de que a base original esteja disponível em:
 
 ```text
-df_limpo.csv
+data/raw/Varejo.csv
 ```
 
-Esse arquivo contém a base tratada e pronta para análises posteriores.
+Depois execute:
+
+```bash
+python src/retail_analysis.py
+```
+
+O script executa todo o fluxo:
+
+```text
+Importação
+   ↓
+Avaliação da Qualidade
+   ↓
+Limpeza
+   ↓
+Transformação
+   ↓
+Estatística Descritiva
+   ↓
+Análises Agrupadas
+   ↓
+Exportação
+```
+
+---
+
+## 📤 Base Processada
+
+Após o processamento, a base limpa é exportada para:
+
+```text
+data/processed/df_limpo.csv
+```
+
+A base processada contém **733.447 registros** após a remoção das observações duplicadas e das colunas desnecessárias.
+
+---
+
+## 🔬 Fluxo da Análise
+
+O projeto demonstra um fluxo reproduzível de análise de dados:
+
+```text
+                ┌───────────────────┐
+                │   Varejo.csv      │
+                │ 830 mil registros │
+                └─────────┬─────────┘
+                          │
+                          ▼
+                ┌───────────────────┐
+                │ Inspeção dos      │
+                │ Dados             │
+                └─────────┬─────────┘
+                          │
+                          ▼
+                ┌───────────────────┐
+                │ Verificações de   │
+                │ Qualidade         │
+                └─────────┬─────────┘
+                          │
+                          ▼
+                ┌───────────────────┐
+                │ Limpeza e         │
+                │ Transformação     │
+                └─────────┬─────────┘
+                          │
+                          ▼
+                ┌───────────────────┐
+                │ 733 mil Registros │
+                │ Limpos            │
+                └─────────┬─────────┘
+                          │
+                          ▼
+                ┌───────────────────┐
+                │ Análise           │
+                │ Exploratória      │
+                └─────────┬─────────┘
+                          │
+                          ▼
+                ┌───────────────────┐
+                │ Insights de       │
+                │ Negócio           │
+                └───────────────────┘
+```
+
+---
+
+## 📈 Possíveis Melhorias
+
+Possíveis evoluções futuras do projeto incluem:
+
+- visualizações exploratórias adicionais;
+- análise de segmentação de clientes;
+- análise temporal das compras;
+- análise de afinidade entre produtos;
+- testes automatizados de qualidade dos dados;
+- implementação de logs e monitoramento;
+- maior modularização do pipeline de análise;
+- dashboard interativo utilizando Streamlit ou Power BI.
+
+---
+
+## 🎯 Sobre o Projeto
+
+Este projeto demonstra experiência prática com **limpeza, transformação, validação, estatística descritiva e análise exploratória de dados utilizando Python**.
+
+Foi originalmente desenvolvido durante minha **formação em Análise de Dados com Python** e posteriormente reorganizado para apresentação em portfólio profissional.
+
+O projeto complementa projetos analíticos mais avançados ao demonstrar fundamentos sólidos em:
+
+**Python · Pandas · Limpeza de Dados · Qualidade de Dados · Análise Exploratória de Dados**
+
+---
+
+## 👨‍💻 Autor
+
+**Victor Hugo de Castro Brandão**
+
+Finanças | Análise de Dados | Tecnologia Financeira
+
+[GitHub](https://github.com/victorhcbrandao) · [LinkedIn](https://www.linkedin.com/in/victorhugodecastro/)

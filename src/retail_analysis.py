@@ -16,7 +16,12 @@ import pandas as pd
 import numpy as np
 import re
 import csv
+from pathlib import Path
 
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+RAW_FILE = BASE_DIR / "data" / "raw" / "Varejo.csv"
+PROCESSED_FILE = BASE_DIR / "data" / "processed" / "df_limpo.csv"
 
 # ------------------------------------------------------------
 # FUNÇÃO 1 - Limpeza de textos
@@ -75,13 +80,13 @@ def converter_decimal(serie):
 
 # A base Varejo.csv foi disponibilizada no Kaggle e importada para execução
 # local no VSCode ou no Google Colab.
-df = pd.read_csv("Varejo.csv", sep=";")
+df = pd.read_csv(RAW_FILE, sep=";")
 
 # Demonstração complementar de leitura estruturada usando csv.DictReader,
 # conforme critério da rúbrica de avaliação.
 # A análise principal será realizada com pandas, mas este bloco valida
 # a leitura nativa do CSV em formato de dicionário.
-with open("Varejo.csv", mode="r", encoding="utf-8") as arquivo_csv:
+with open(RAW_FILE, mode="r", encoding="utf-8") as arquivo_csv:
     leitor_csv = csv.DictReader(arquivo_csv, delimiter=";")
     amostra_dictreader = []
 
@@ -297,7 +302,7 @@ print(media_filhos_genero)
 # 6. EXPORTAÇÃO DA BASE LIMPA
 # ------------------------------------------------------------
 
-df.to_csv("df_limpo.csv", index=False)
+df.to_csv(PROCESSED_FILE, index=False)
 
 print("\n" + "=" * 70)
 print("6. EXPORTAÇÃO")
