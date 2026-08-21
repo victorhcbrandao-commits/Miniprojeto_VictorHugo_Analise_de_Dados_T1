@@ -1,82 +1,82 @@
-# 🛒 Análise de Dados de Varejo
+# 🛒 Retail Data Analysis
 
-**Python · Pandas · Limpeza de Dados · Análise Exploratória de Dados**
+**Python · Pandas · Data Cleaning · Exploratory Data Analysis**
 
-[🇺🇸 English](README.md) | 🇧🇷 **Português**
+🇺🇸 **English** | [🇧🇷 Português](README.pt-BR.md)
 
-> Transformando uma grande base de dados de varejo em dados limpos, estruturados e prontos para análise utilizando Python e Pandas.
+> Transforming a large retail dataset into clean, structured, and analysis-ready data using Python and Pandas.
 
-> Este projeto foi originalmente desenvolvido como parte de um **programa de formação em Análise de Dados com Python** e posteriormente reorganizado para apresentação em portfólio profissional.
+> This project was originally developed as part of a **Data Analytics with Python program** and was later reorganized for professional portfolio presentation.
 
 ---
 
-## 📌 Visão Geral do Projeto
+## 📌 Project Overview
 
-O projeto **Análise de Dados de Varejo** explora uma grande base de dados contendo informações sobre clientes, compras e produtos.
+The **Retail Data Analysis** project explores a large retail dataset containing information about customers, purchases, and products.
 
-A base original possui aproximadamente **830.000 registros** e apresenta desafios comuns de qualidade de dados encontrados em cenários reais, incluindo:
+The original dataset contains approximately **830,000 records** and presents common real-world data quality challenges, including:
 
-- colunas vazias;
-- registros duplicados;
-- tipos de dados inconsistentes;
-- variáveis categóricas que precisam ser validadas;
-- campos de data que precisam ser convertidos.
+- empty columns;
+- duplicate records;
+- inconsistent data types;
+- categorical variables requiring validation;
+- date fields requiring conversion.
 
-O projeto implementa um fluxo completo de preparação e análise exploratória utilizando **Python e Pandas**, transformando os dados brutos em uma base limpa e estruturada, pronta para análises posteriores.
+The project implements a complete data preparation and exploratory analysis workflow using **Python and Pandas**, transforming the raw dataset into a clean and structured dataset ready for further analysis.
 
-O fluxo geral do projeto é:
+The workflow follows the general process:
 
 ```text
-Base de Varejo Bruta
+Raw Retail Dataset
         │
         ▼
-Inspeção dos Dados
+Data Inspection
         │
         ▼
-Avaliação da Qualidade
+Data Quality Assessment
         │
         ▼
-Limpeza e Transformação
+Cleaning & Transformation
         │
         ▼
-Análise Exploratória
+Exploratory Analysis
         │
         ▼
-Base Processada
+Processed Dataset
         │
         ▼
-Insights de Negócio
+Business Insights
 ```
 
 ---
 
-## 🗂️ Base de Dados
+## 🗂️ Dataset
 
-O projeto utiliza uma base de varejo contendo informações sobre clientes, compras e produtos.
+The project uses a retail dataset containing customer, purchase, and product information.
 
-A base original contém:
+The original dataset contains:
 
 ```text
-830.000 linhas
-14 colunas
+830,000 rows
+14 columns
 ```
 
-Os principais atributos incluem:
+Main attributes include:
 
-| Coluna | Descrição |
+| Column | Description |
 |---|---|
-| `DATA` | Data da compra |
-| `CO_ID` | Identificador da compra |
-| `CL_ID` | Identificador do cliente |
-| `CL_GENERO` | Gênero do cliente |
-| `CL_EC` | Estado civil do cliente |
-| `CL_FHL` | Número de filhos |
-| `CL_SEG` | Segmento do cliente |
-| `PR_ID` | Identificador do produto |
-| `PR_CAT` | Categoria do produto |
-| `PR_NOME` | Nome do produto |
+| `DATA` | Purchase date |
+| `CO_ID` | Purchase identifier |
+| `CL_ID` | Customer identifier |
+| `CL_GENERO` | Customer gender |
+| `CL_EC` | Customer marital status |
+| `CL_FHL` | Number of children |
+| `CL_SEG` | Customer segment |
+| `PR_ID` | Product identifier |
+| `PR_CAT` | Product category |
+| `PR_NOME` | Product name |
 
-A base bruta também continha quatro colunas completamente vazias:
+The raw dataset also contained four completely empty columns:
 
 ```text
 Unnamed: 10
@@ -85,191 +85,191 @@ Unnamed: 12
 Unnamed: 13
 ```
 
-Essas colunas foram identificadas durante a avaliação de qualidade e removidas durante o processamento.
+These columns were identified during the data quality assessment and removed during processing.
 
 ---
 
-## 🔎 Avaliação da Qualidade dos Dados
+## 🔎 Data Quality Assessment
 
-Antes da análise, a base foi inspecionada em busca de problemas comuns de qualidade de dados.
+Before performing the analysis, the dataset was inspected for common data quality issues.
 
-A avaliação incluiu:
+The assessment included:
 
-- valores ausentes;
-- registros duplicados;
-- datas inválidas;
-- categorias de produtos vazias;
-- identificadores de compra ausentes;
-- colunas vazias desnecessárias;
-- consistência dos tipos de dados.
+- missing values;
+- duplicate records;
+- invalid dates;
+- empty product categories;
+- missing purchase identifiers;
+- unnecessary empty columns;
+- data type consistency.
 
-A análise identificou **96.553 registros duplicados** na base original.
+The analysis identified **96,553 duplicate records** in the original dataset.
 
-Após a limpeza e remoção das duplicidades, a base final passou a conter:
+After cleaning and duplicate removal, the final dataset contains:
 
 ```text
-733.447 registros
+733,447 records
 ```
 
-Isso representa aproximadamente **88% da base original**, preservando a maior parte das informações enquanto elimina observações duplicadas.
+This represents approximately **88% of the original dataset**, preserving the majority of the information while removing duplicated observations.
 
 ---
 
-## 🧹 Limpeza e Transformação dos Dados
+## 🧹 Data Cleaning & Transformation
 
-A etapa de processamento prepara os dados brutos para uma análise mais confiável.
+The processing stage prepares the raw dataset for reliable analysis.
 
-As principais transformações incluem:
+Main transformations include:
 
 ```text
-Dados brutos
+Raw data
    │
-   ├── Remoção de colunas vazias
+   ├── Remove empty columns
    │
-   ├── Validação dos identificadores de compra
+   ├── Validate purchase identifiers
    │
-   ├── Conversão das datas
+   ├── Convert dates
    │
-   ├── Normalização dos tipos de dados
+   ├── Normalize data types
    │
-   ├── Tratamento de valores ausentes
+   ├── Handle missing values
    │
-   ├── Validação das categorias de produtos
+   ├── Validate product categories
    │
-   └── Remoção de registros duplicados
+   └── Remove duplicate records
    │
    ▼
-Base limpa
+Clean dataset
 ```
 
-### Conversão de datas
+### Date conversion
 
-A coluna `DATA` é convertida para um formato datetime adequado, permitindo análises temporais mais confiáveis.
+The `DATA` column is converted into a proper datetime format, allowing reliable temporal analysis.
 
-### Identificadores de compra
+### Purchase identifiers
 
-O campo `CO_ID` é tratado como identificador, e não como uma medida numérica.
+`CO_ID` is treated as an identifier rather than a numerical measure.
 
-### Valores ausentes
+### Missing values
 
-O projeto verifica o campo `CL_FHL` e aplica imputação pela mediana quando existem valores ausentes.
+The project checks the `CL_FHL` field and applies median imputation when missing values are present.
 
-### Remoção de duplicidades
+### Duplicate removal
 
-Observações duplicadas são removidas antes da realização das análises exploratórias.
+Duplicate observations are removed before performing the exploratory analysis.
 
-### Colunas vazias
+### Empty columns
 
-Colunas contendo apenas valores nulos são removidas automaticamente.
+Columns containing only null values are removed automatically.
 
 ---
 
-## 📊 Análise Exploratória de Dados
+## 📊 Exploratory Data Analysis
 
-Após a limpeza da base, são realizadas estatísticas descritivas e análises agrupadas para identificar padrões relacionados aos clientes e às compras.
+After cleaning the dataset, descriptive statistics and grouped analyses are performed to identify patterns in customer and purchase behavior.
 
-### Número de filhos
+### Number of children
 
-A variável `CL_FHL` apresenta as seguintes estatísticas descritivas:
+The `CL_FHL` variable presents the following descriptive statistics:
 
-| Métrica | Valor |
+| Metric | Value |
 |---|---:|
-| Média | 1,15 |
-| Mediana | 0 |
-| Desvio padrão | 1,42 |
-| Moda | 0 |
-| Mínimo | 0 |
-| Máximo | 4 |
+| Mean | 1.15 |
+| Median | 0 |
+| Standard deviation | 1.42 |
+| Mode | 0 |
+| Minimum | 0 |
+| Maximum | 4 |
 
-Quartis:
+Quartiles:
 
 ```text
-25% → 0 filhos
-50% → 0 filhos
-75% → 2 filhos
+25% → 0 children
+50% → 0 children
+75% → 2 children
 ```
 
-Os resultados indicam que uma parcela significativa dos clientes presentes na base não possui filhos.
+This indicates that a significant portion of customers in the dataset have no children.
 
 ---
 
-## 🛍️ Análise das Categorias de Produtos
+## 🛍️ Product Category Analysis
 
-A base processada permite identificar as categorias com maior volume de registros de compra.
+The cleaned dataset allows the identification of the categories with the highest purchase volume.
 
-| Categoria | Registros |
+| Product Category | Records |
 |---|---:|
-| ALIMENTOS | 384.197 |
-| HIGIENE | 137.702 |
-| LIMPEZA | 128.632 |
-| BEBIDAS | 38.264 |
-| PET | 28.553 |
-| ACESSORIOS | 12.871 |
-| N/D | 3.228 |
+| ALIMENTOS | 384,197 |
+| HIGIENE | 137,702 |
+| LIMPEZA | 128,632 |
+| BEBIDAS | 38,264 |
+| PET | 28,553 |
+| ACESSORIOS | 12,871 |
+| N/D | 3,228 |
 
-A categoria **ALIMENTOS** representa, com ampla diferença, o maior volume de registros da base.
+**ALIMENTOS** represents the largest category in the dataset by a significant margin.
 
 ---
 
-## 👥 Análise dos Clientes
+## 👥 Customer Analysis
 
-O projeto também avalia a atividade de compra de acordo com o gênero dos clientes.
+The project also evaluates purchase activity by customer gender.
 
-Identificadores únicos de compra por gênero:
+Unique purchase identifiers by gender:
 
-| Gênero | Compras |
+| Gender | Purchases |
 |---|---:|
-| Feminino | 9.615 |
-| Masculino | 8.856 |
+| Female | 9,615 |
+| Male | 8,856 |
 
-Média do número de filhos:
+Average number of children:
 
-| Gênero | Média |
+| Gender | Average |
 |---|---:|
-| Masculino | 1,21 |
-| Feminino | 1,09 |
+| Male | 1.21 |
+| Female | 1.09 |
 
-Essas agregações fornecem uma visão inicial das características dos clientes e dos padrões de compra presentes na base.
-
----
-
-## 💡 Principais Resultados
-
-A análise destaca algumas características relevantes da base de varejo:
-
-- A base original possui **830.000 registros**, demonstrando o processamento de um volume significativo de dados utilizando Pandas.
-- Foram identificados e removidos **96.553 registros duplicados**.
-- A base final processada contém **733.447 registros**.
-- `ALIMENTOS` é a categoria dominante em quantidade de registros.
-- A mediana do número de filhos dos clientes é **0**.
-- Clientes do gênero feminino apresentam uma quantidade ligeiramente maior de identificadores únicos de compra do que clientes do gênero masculino.
-- A conversão adequada de datas e identificadores melhora a confiabilidade das análises posteriores.
-
-O projeto demonstra como um processo estruturado de limpeza pode transformar dados operacionais brutos em uma base mais confiável para exploração analítica.
+These aggregations provide an initial view of customer characteristics and purchasing patterns within the dataset.
 
 ---
 
-## 🛠️ Tecnologias Utilizadas
+## 💡 Key Findings
 
-### Processamento de Dados
+The analysis highlights several characteristics of the retail dataset:
+
+- The original dataset contains **830,000 records**, demonstrating the ability to process a relatively large dataset using Pandas.
+- **96,553 duplicate records** were identified and removed.
+- The final cleaned dataset contains **733,447 records**.
+- `ALIMENTOS` is the dominant product category by transaction records.
+- The median number of children per customer is **0**.
+- Female customers account for a slightly higher number of unique purchase identifiers than male customers.
+- Converting dates and identifiers into appropriate data types improves the reliability of subsequent analysis.
+
+The project demonstrates how systematic data cleaning can transform raw operational data into a reliable dataset for analytical exploration.
+
+---
+
+## 🛠️ Tech Stack
+
+### Data Processing
 
 `Python` · `Pandas`
 
-### Manipulação de Dados
+### Data Handling
 
 `CSV` · `csv.DictReader`
 
-### Análise
+### Analysis
 
-`Estatística Descritiva` · `Agregação de Dados` · `Limpeza de Dados`
+`Descriptive Statistics` · `Data Aggregation` · `Data Cleaning`
 
-### Desenvolvimento
+### Development
 
 `Git` · `GitHub` · `VS Code`
 
 ---
 
-## 📁 Estrutura do Projeto
+## 📁 Project Structure
 
 ```text
 retail-data-analysis/
@@ -293,27 +293,27 @@ retail-data-analysis/
 
 ---
 
-## 🚀 Como Executar
+## 🚀 Getting Started
 
-### 1. Clonar o repositório
+### 1. Clone the repository
 
 ```bash
 git clone https://github.com/victorhcbrandao/retail-data-analysis.git
 ```
 
-### 2. Acessar a pasta do projeto
+### 2. Navigate to the project
 
 ```bash
 cd retail-data-analysis
 ```
 
-### 3. Criar um ambiente virtual
+### 3. Create a virtual environment
 
 ```bash
 python -m venv .venv
 ```
 
-### 4. Ativar o ambiente
+### 4. Activate the environment
 
 **Windows**
 
@@ -327,7 +327,7 @@ python -m venv .venv
 source .venv/bin/activate
 ```
 
-### 5. Instalar as dependências
+### 5. Install dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -335,132 +335,128 @@ pip install -r requirements.txt
 
 ---
 
-## ▶️ Executando a Análise
+## ▶️ Running the Analysis
 
-Certifique-se de que a base original esteja disponível em:
+Make sure the original dataset is available at:
 
 ```text
 data/raw/Varejo.csv
 ```
 
-Depois execute:
+Then run:
 
 ```bash
 python src/retail_analysis.py
 ```
 
-O script executa todo o fluxo:
+The script performs the complete workflow:
 
 ```text
-Importação
+Import
    ↓
-Avaliação da Qualidade
+Data Quality Assessment
    ↓
-Limpeza
+Cleaning
    ↓
-Transformação
+Transformation
    ↓
-Estatística Descritiva
+Descriptive Statistics
    ↓
-Análises Agrupadas
+Grouped Analysis
    ↓
-Exportação
+Export
 ```
 
 ---
 
-## 📤 Base Processada
+## 📤 Output Dataset
 
-Após o processamento, a base limpa é exportada para:
+After processing, the cleaned dataset is exported to:
 
 ```text
 data/processed/df_limpo.csv
 ```
 
-A base processada contém **733.447 registros** após a remoção das observações duplicadas e das colunas desnecessárias.
+The processed dataset contains **733,447 records** after removing duplicated observations and unnecessary columns.
 
 ---
 
-## 🔬 Fluxo da Análise
+## 🔬 Analysis Workflow
 
-O projeto demonstra um fluxo reproduzível de análise de dados:
+The project demonstrates a reproducible data analysis workflow:
 
 ```text
                 ┌───────────────────┐
                 │   Varejo.csv      │
-                │ 830 mil registros │
+                │   830K records    │
                 └─────────┬─────────┘
                           │
                           ▼
                 ┌───────────────────┐
-                │ Inspeção dos      │
-                │ Dados             │
+                │ Data Inspection   │
                 └─────────┬─────────┘
                           │
                           ▼
                 ┌───────────────────┐
-                │ Verificações de   │
-                │ Qualidade         │
+                │ Quality Checks    │
                 └─────────┬─────────┘
                           │
                           ▼
                 ┌───────────────────┐
-                │ Limpeza e         │
-                │ Transformação     │
+                │ Data Cleaning     │
+                │ & Transformation  │
                 └─────────┬─────────┘
                           │
                           ▼
                 ┌───────────────────┐
-                │ 733 mil Registros │
-                │ Limpos            │
+                │ 733K Clean Rows   │
                 └─────────┬─────────┘
                           │
                           ▼
                 ┌───────────────────┐
-                │ Análise           │
-                │ Exploratória      │
+                │ Exploratory       │
+                │ Analysis          │
                 └─────────┬─────────┘
                           │
                           ▼
                 ┌───────────────────┐
-                │ Insights de       │
-                │ Negócio           │
+                │ Business Insights │
                 └───────────────────┘
 ```
 
 ---
 
-## 📈 Possíveis Melhorias
+## 📈 Possible Improvements
 
-Possíveis evoluções futuras do projeto incluem:
+Potential future improvements include:
 
-- visualizações exploratórias adicionais;
-- análise de segmentação de clientes;
-- análise temporal das compras;
-- análise de afinidade entre produtos;
-- testes automatizados de qualidade dos dados;
-- implementação de logs e monitoramento;
-- maior modularização do pipeline de análise;
-- dashboard interativo utilizando Streamlit ou Power BI.
-
----
-
-## 🎯 Sobre o Projeto
-
-Este projeto demonstra experiência prática com **limpeza, transformação, validação, estatística descritiva e análise exploratória de dados utilizando Python**.
-
-Foi originalmente desenvolvido durante minha **formação em Análise de Dados com Python** e posteriormente reorganizado para apresentação em portfólio profissional.
-
-O projeto complementa projetos analíticos mais avançados ao demonstrar fundamentos sólidos em:
-
-**Python · Pandas · Limpeza de Dados · Qualidade de Dados · Análise Exploratória de Dados**
+- additional exploratory visualizations;
+- customer segmentation analysis;
+- temporal purchasing analysis;
+- product affinity analysis;
+- automated data quality tests;
+- logging and monitoring;
+- modularization of the analysis pipeline;
+- interactive dashboard using Streamlit or Power BI.
 
 ---
 
-## 👨‍💻 Autor
+## 🎯 About the Project
+
+This project demonstrates practical experience with **data cleaning, transformation, validation, descriptive statistics, and exploratory data analysis using Python**.
+
+It was originally developed during my **Data Analytics with Python training** and was later reorganized into a portfolio-ready project.
+
+The project complements more advanced analytics projects by demonstrating strong fundamentals in:
+
+**Python · Pandas · Data Cleaning · Data Quality · Exploratory Data Analysis**
+
+---
+
+## 👨‍💻 Author
 
 **Victor Hugo de Castro Brandão**
 
-Finanças | Análise de Dados | Tecnologia Financeira
+Finance | Data Analytics | Financial Technology
 
 [GitHub](https://github.com/victorhcbrandao) · [LinkedIn](https://www.linkedin.com/in/victorhugodecastro/)
